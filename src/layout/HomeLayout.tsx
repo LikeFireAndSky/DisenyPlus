@@ -1,6 +1,5 @@
 import React from 'react';
 import Nav from '../components/Nav';
-import MainView from '../components/Home/MainView';
 
 type HomeLayoutProps = {
 	children: React.ReactNode;

@@ -95,7 +95,7 @@ const Nav = () => {
 
 	return (
 		<Navbar
-			className={`mx-auto fixed w-5/6 px-6 py-3 transition-background-color duration-default transition-in ${
+			className={`mx-auto fixed w-5/6 max-w-none px-6 py-3 transition-background-color duration-default transition-in ${
 				show ? 'bg-blue-gray-400' : 'bg-brown-500'
 			}`}
 		>
