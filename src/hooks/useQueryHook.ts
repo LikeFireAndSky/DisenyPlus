@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
+import { QueryOptions } from './hooks.type';
 
-const queryOptions = {
-	staleTime: 5000,
-	cacheTime: 1000 * 60,
-};
-
-const useQueryHook = (queryKey: string, queryFn: () => Promise<any>) => {
+const useQueryHook = (
+	queryKey: string,
+	queryFn: () => Promise<any>,
+	queryOptions: QueryOptions,
+) => {
 	const { data, isLoading, error } = useQuery(
 		[queryKey],
 		queryFn,

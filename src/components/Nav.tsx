@@ -68,7 +68,7 @@ const NavList = () => {
 
 const Nav = () => {
 	const [openNav, setOpenNav] = React.useState(false);
-	const [show, handleShow] = React.useState(false);
+	const [show, handleShow] = React.useState(true);
 
 	const handleWindowResize = () =>
 		window.innerWidth >= 960 && setOpenNav(false);
@@ -83,19 +83,19 @@ const Nav = () => {
 
 	React.useEffect(() => {
 		window.addEventListener('scroll', () => {
-			if (window.scrollY > 20) {
-				handleShow(true);
-			} else handleShow(false);
+			if (window.scrollY < 30) {
+				handleShow(!show);
+			} else handleShow(!show);
 		});
 
 		return () => {
 			window.removeEventListener('scroll', () => {});
 		};
-	}, []);
+	}, [show]);
 
 	return (
 		<Navbar
-			className={`mx-auto fixed w-5/6 max-w-none px-6 py-3 transition-background-color duration-default transition-in ${
+			className={`mx-auto fixed w-5/6 max-w-none px-6 py-3 z-50 transition-background-color duration-default transition-in ${
 				show ? 'bg-blue-gray-400' : 'bg-brown-500'
 			}`}
 		>

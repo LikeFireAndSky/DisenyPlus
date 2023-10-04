@@ -4,12 +4,10 @@ import { Drawer, Typography } from '@material-tailwind/react';
 import { Root } from '../../types/movieData';
 import PlayButton from './PlayButton';
 
+import truncate from '../../utils/truncate';
+
 type MainViewProps = {
 	data: Root;
-};
-
-const truncate = (str: string, n: number) => {
-	return str?.length > n ? str.substring(0, n - 1) + '...' : str;
 };
 
 const MainView = ({ data }: MainViewProps) => {
@@ -23,10 +21,10 @@ const MainView = ({ data }: MainViewProps) => {
 	};
 
 	const bgImage = data.backdrop_path;
-	const description = truncate(data.overview, 150);
+	const description = truncate(data.overview, 50);
 
 	return (
-		<div className="flex flex-col h-full px-3 pt-3">
+		<div className="flex flex-col px-3 pt-3">
 			<figure className="relative h-96 w-full">
 				<img
 					className="h-full w-full rounded-xl object-cover-top object-center"
