@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../api/axios';
 
-import HomeLayout from '../layout/HomeLayout';
 import MainView from '../components/Home/MainView';
 import Category from '../components/Home/Category';
 import RowCarouselWrapper from '../components/Home/RowCarouselWrapper';
@@ -60,8 +59,8 @@ const Home = () => {
 		actionQueryKey,
 		() => getGenreMovieData(requests.fetchActionMovies),
 		{
-			staleTime: 1000,
-			cacheTime: 1000,
+			staleTime: 1000 * 60 * 60 * 24,
+			cacheTime: 1000 * 60 * 60 * 24,
 			enabled: filter,
 		},
 	);
@@ -70,8 +69,8 @@ const Home = () => {
 		romanceQueryKey,
 		() => getGenreMovieData(requests.fetchRomanceMovies),
 		{
-			staleTime: 1000,
-			cacheTime: 1000,
+			staleTime: 1000 * 60 * 60 * 24,
+			cacheTime: 1000 * 60 * 60 * 24,
 			enabled: filter,
 		},
 	);
@@ -80,8 +79,8 @@ const Home = () => {
 		comedyQueryKey,
 		() => getGenreMovieData(requests.fetchComedyMovies),
 		{
-			staleTime: 1000,
-			cacheTime: 1000 * 60 * 5,
+			staleTime: 1000 * 60 * 60 * 24,
+			cacheTime: 1000 * 60 * 60 * 24,
 			enabled: filter,
 		},
 	);
@@ -90,8 +89,8 @@ const Home = () => {
 		horrorQueryKey,
 		() => getGenreMovieData(requests.fetchHorrorMovies),
 		{
-			staleTime: 1000,
-			cacheTime: 1000 * 60 * 5,
+			staleTime: 1000 * 60 * 60 * 24,
+			cacheTime: 1000 * 60 * 60 * 24,
 			enabled: filter,
 		},
 	);
@@ -112,7 +111,7 @@ const Home = () => {
 	if (error) return <div>에러가 발생했습니다.</div>;
 
 	return (
-		<HomeLayout>
+		<>
 			<MainView data={data} />
 			<Category />
 			<RowCarouselWrapper>
@@ -121,7 +120,7 @@ const Home = () => {
 				<ComedyRowCarousel data={comedyData} />
 				<HorrorRowCarousel data={horrorData} />
 			</RowCarouselWrapper>
-		</HomeLayout>
+		</>
 	);
 };
 

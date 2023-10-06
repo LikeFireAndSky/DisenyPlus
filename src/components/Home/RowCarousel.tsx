@@ -14,22 +14,23 @@ type MainViewProps = {
 
 const RowCarousel = React.memo(({ data }: MainViewProps) => {
 	const backdropArrays = useMemo(() => {
-		const backdropArray = [] as string[];
+		const backdropArray = [] as Record<string, string | number>[];
 
 		data.data.results.forEach(item => {
 			if (item.backdrop_path) {
-				backdropArray.push(item.backdrop_path);
+				backdropArray.push({
+					backdrop: item.backdrop_path,
+					id: item.id,
+					title: item.title,
+					overview: item.overview,
+				});
 			}
 		});
-
-		console.log('backdropArray: ', backdropArray);
 
 		return backdropArray;
 	}, [data]);
 
 	// 배열에 backdrop_path가 있는 경우만 추가
-
-	console.log('컴포넌트 호출');
 
 	const chunkedData = chunkArray(backdropArrays);
 
@@ -50,12 +51,14 @@ const RowCarousel = React.memo(({ data }: MainViewProps) => {
 				</div>
 			)}
 		>
-			{chunkedData.map((chunk: string[], i: number) => (
-				<RowCarouselItem
-					key={i}
-					chunk={chunk}
-				/>
-			))}
+			{chunkedData.map(
+				(chunk: Record<string, string | number>[], i: number) => (
+					<RowCarouselItem
+						key={i}
+						chunk={chunk}
+					/>
+				),
+			)}
 		</Carousel>
 	);
 });
